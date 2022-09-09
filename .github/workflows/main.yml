@@ -39,12 +39,12 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       # Runs a single command using the runners shell
-      - name: Run a one-line script
+      - name: Build Terraform State
         run: chmod +x ./tstate.sh && ./tfstate.sh ${{ env.AZURE_STORAGE }}
 
       - name: HashiCorp - Setup Terraform
       # You may pin to the exact commit or the version.
-        uses: hashicorp/setup-terraform@17d4c9b8043b238f6f35641cdd8433da1e6f3867
+        uses: hashicorp/setup-terraform@v2.0.0
       
       - name: Terraform init
         run: terraform init -backend-config="storage_acount_name=${{ env.AZURE_STORAGE }}"
